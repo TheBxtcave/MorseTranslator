@@ -1,3 +1,5 @@
+import os
+
 def english_to_morse(text):
     morse_code_dict = {
         'A': '.-', 'B': '-...', 'C': '-.-.', 'D': '-..', 'E': '.',
@@ -47,29 +49,48 @@ morse_code_dict = {
 }
 
 
+def clear_terminal():
+    # Clear terminal screen using ANSI escape codes
+    print("\033c", end='')
+
+def display_menu():
+    menu = """ Welcome to   
+  __  __                    ___         _     
+ |  \/  |___ _ _ ___ ___   / __|___  __| |___ 
+ | |\/| / _ \ '_(_-</ -_) | (__/ _ \/ _` / -_)
+ |_|  |_\___/_| /__/\___|  \___\___/\__,_\___|
+                                              
+1. Translate English to Morse code
+2. Translate Morse code to English
+3. Exit
+"""
+    print(menu)
+
 def main():
     while True:
-        print("Select an option:")
-        print("1. Translate English to Morse code")
-        print("2. Translate Morse code to English")
-        print("3. Exit")
-        choice = input("Enter your choice: ")
+        clear_terminal()  # Clear the terminal at the start of each loop
+        display_menu()
+
+        choice = input()
 
         if choice == '1':
             english_text = input("Enter the English text to translate to Morse code: ")
             morse_code = english_to_morse(english_text)
             print("Morse code:", morse_code)
+            input("Press Enter to continue...")
 
         elif choice == '2':
             morse_code = input("Enter the Morse code to translate to English: ")
             english_text = morse_to_english(morse_code)
             print("English text:", english_text)
+            input("Press Enter to continue...")
 
         elif choice == '3':
             break
 
         else:
             print("Invalid choice. Please try again.")
+            input("Press Enter to continue...")
 
 
 if __name__ == "__main__":
